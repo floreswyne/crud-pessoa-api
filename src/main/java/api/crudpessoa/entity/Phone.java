@@ -39,7 +39,7 @@ public class Phone {
     private String number;
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="person_id")
     private Person person;
 
     @CreatedDate

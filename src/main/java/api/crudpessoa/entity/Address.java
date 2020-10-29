@@ -45,7 +45,7 @@ public class Address {
     private String state;
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="person_id")
     private Person person;
 
     @CreatedDate

@@ -3,6 +3,7 @@ package api.crudpessoa.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -44,9 +45,15 @@ public class Person {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "person")
-    private List<Address> adresses;
-    @OneToMany(mappedBy = "person")
+    @OneToMany(
+        cascade = CascadeType.ALL,
+        mappedBy = "person"
+    )
+    private List<Address> addresses;
+    @OneToMany(
+        cascade = CascadeType.ALL,
+        mappedBy = "person"
+    )
     private List<Phone> phones;
 
     @CreatedDate
