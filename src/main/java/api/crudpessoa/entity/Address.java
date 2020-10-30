@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -43,10 +44,6 @@ public class Address {
     private String city;
     @Column(nullable = false, length = 2)
     private String state;
-
-    @ManyToOne
-    @JoinColumn(name="person_id")
-    private Person person;
 
     @CreatedDate
     private Date createdAt;

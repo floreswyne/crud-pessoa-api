@@ -8,5 +8,5 @@ public interface PersonRepository
 extends JpaRepository<Person, Long>
 {
     Person findByName(String name);
-    Person findByCPF(String cpf);
+    Person findByCpf(String cpf);
 }

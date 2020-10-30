@@ -19,9 +19,9 @@ public class PersonService {
         return repository.save(person);
     }
 
-    public Person getPersonByCPF(String cpf)
+    public Person getPersonByCpf(String cpf)
     {
-        return repository.findByCPF(cpf);
+        return repository.findByCpf(cpf);
     }
 
     public Person getPersonByName(String name)
@@ -36,7 +36,7 @@ public class PersonService {
 
     public Person updatePerson(Person person)
     {
-        Person existingPerson = repository.findByCPF(person.getCpf());
+        Person existingPerson = repository.findByCpf(person.getCpf());
 
         existingPerson.setName(person.getName());
         existingPerson.setSex(person.getSex());

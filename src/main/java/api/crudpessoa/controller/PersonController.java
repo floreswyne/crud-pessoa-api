@@ -1,5 +1,7 @@
 package api.crudpessoa.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,13 +31,19 @@ public class PersonController {
         return service.createPerson(person);
     }
 
+    @GetMapping("/all")
+    public List<Person> findPeople()
+    {
+        return service.getPeople();
+    }
+
     @GetMapping("/cpf/{cpf}")
-    public Person findPersonByCPF(
+    public Person findPersonByCpf(
         @PathVariable
         String cpf
     )
     {
-        return service.getPersonByCPF(cpf);
+        return service.getPersonByCpf(cpf);
     }
 
     @PutMapping("/update")

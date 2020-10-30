@@ -1,5 +1,6 @@
 package api.crudpessoa.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,33 +36,37 @@ public class Person {
     @GeneratedValue
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String name;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1)
     private String sex;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 15, unique = true)
     private String cpf;
     @Column(nullable = false)
     private Date birthday;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String email;
 
     @OneToMany(
-        cascade = CascadeType.ALL,
-        mappedBy = "person"
+        // mappedBy = "person",
+        targetEntity = Address.class,
+        cascade = CascadeType.PERSIST
     )
+    @JoinColumn(name = "person_id")
     private List<Address> addresses;
+
     @OneToMany(
-        cascade = CascadeType.ALL,
-        mappedBy = "person"
+        // mappedBy = "person",
+        targetEntity = Phone.class,
+        cascade = CascadeType.PERSIST
     )
+    @JoinColumn(name = "person_id")
     private List<Phone> phones;
 
     @CreatedDate
     private Date createdAt;
     @LastModifiedDate
     private Date updatedAt;
-    @Column(nullable = false)
     private boolean wasDeleted = false;
 
 }
