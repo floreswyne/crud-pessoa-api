@@ -1,6 +1,5 @@
 package api.crudpessoa.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table
-@SQLDelete(sql = "UPDATE user SET was_deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE person SET was_deleted = true WHERE id = ?")
 public class Person {
     
     @Id
@@ -48,17 +47,17 @@ public class Person {
     private String email;
 
     @OneToMany(
-        // mappedBy = "person",
         targetEntity = Address.class,
-        cascade = CascadeType.PERSIST
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
     )
     @JoinColumn(name = "person_id")
     private List<Address> addresses;
 
     @OneToMany(
-        // mappedBy = "person",
         targetEntity = Phone.class,
-        cascade = CascadeType.PERSIST
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
     )
     @JoinColumn(name = "person_id")
     private List<Phone> phones;
